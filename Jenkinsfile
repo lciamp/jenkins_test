@@ -16,25 +16,29 @@ pipeline {
                 echo "Testing..."
             }
         }
-        stage("--Deployment--") {
+        stage("--Deployment for Stag--") {
             when {
                 branch 'stag'
             }
             steps {
                 echo "Deploying stag env..."
             }
+        }
+        stage("--Deployment for Prod--") {
+            when {
+                branch 'master'
+            }   
+            steps {
+                echo "prod"
+            } 
+        }
+        stage("--Deployment for QA--") {
             when {
                 branch 'qa'
             }
             steps {
-                echo "Deploying QA env..."
+                echo "qa"
             }
-            when {
-                branch 'master'
-            }
-            steps {
-                echo "Deploying Prod env..."
-            }
-        }    
+        }
     }
 }
