@@ -1,38 +1,39 @@
 pipeline {
     agent any 
-    stage("--Setup--") {
-        steps {
-            echo "Setting up..."
+    stages {
+        stage("--Setup--") {
+            steps {
+                echo "Setting up..."
+            }   
         }
-    }
-    stage("--Build--") {
-        steps {
-            echo "Building..."
+        stage("--Build--") {
+            steps {
+                echo "Building..."
+            }
         }
-    }
-    stage("--Test--") {
-        steps {
-            echo "Testing..."
+        stage("--Test--") {
+            steps {
+                echo "Testing..."
+            }
         }
-    }
-    stage("--Deployment--") {
-        when {
-            branch 'stag'
-        }
-        steps {
-            echo "Deploying stag env..."
-        }
-        when {
-            branch 'qa'
-        }
-        steps {
-            echo "Deploying QA env..."
-        }
-        when {
-            branch 'master'
-        }
-        steps {
-            echo "Deploying Prod env..."
-        }
-    }
+        stage("--Deployment--") {
+            when {
+                branch 'stag'
+            }
+            steps {
+                echo "Deploying stag env..."
+            }
+            when {
+                branch 'qa'
+            }
+            steps {
+                echo "Deploying QA env..."
+            }
+            when {
+                branch 'master'
+            }
+            steps {
+                echo "Deploying Prod env..."
+            }
+        }    
 }
